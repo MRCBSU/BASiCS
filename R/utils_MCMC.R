@@ -136,41 +136,56 @@
   }
 
   if (WithSpikes) {
-    # Initialize s as the empirical capture efficiency rates
-    s0 <- Matrix::colSums(CountsTech) /
-      sum(rowData(altExp(Data))[, 2])
+    # Initialize phi as ratio endogenous / spike-in counts
+    phi0 <- Matrix::colSums(CountsBio) / Matrix::colSums(CountsTech)
+    # Scale phi to have mean = 1
+    phi0 <- n * phi0.1 / sum(phi0.1)
+    # Set s0 such that s0 * phi0 matches scran normalisation
+    s0 <- size_scran / phi0
     nu0 <- s0
-    phi0 <- size_scran / s0
-    phi0 <- n * phi0 / sum(phi0)
+    
+    #s0 <- Matrix::colSums(CountsTech) /
+    #  sum(rowData(altExp(Data))[, 2])
+    #nu0 <- s0
+    #phi0 <- size_scran / s0
+    #phi0 <- n * phi0 / sum(phi0)
 
     # Initialize mu using average 'normalised counts' across cells
     # and true input values for spike-in genes
-    nCountsBio <- t(t(CountsBio) / (phi0 * s0))
-    meansBio <- rowMeans(nCountsBio)
+    #nCountsBio <- t(t(CountsBio) / (phi0 * s0))
+    #meansBio <- rowMeans(nCountsBio)
     # +1 to avoid zeros as starting values
-    mu0 <- meansBio + 1
+    #mu0 <- meansBio + 1
   } else {
     s0 <- size_scran
     nu0 <- s0
     phi0 <- NULL
 
     # Initialize mu using average 'normalised counts' across cells
-    nCountsBio <- t( t(CountsBio) / s0 )
-    meansBio <- rowMeans(nCountsBio)
+    #nCountsBio <- t( t(CountsBio) / s0 )
+    #meansBio <- rowMeans(nCountsBio)
     # +1 to avoid zeros as starting values
-    meansBio <- ifelse(meansBio == 0, meansBio + 1, meansBio)
-    mu0 <- meansBio
+    #meansBio <- ifelse(meansBio == 0, meansBio + 1, meansBio)
+    
+    #mu0 <- meansBio
   }
+  # Normalise expression counts using scran
+  nCountsBio<- t(t(CountsBio) / size_scran)
+  # Calculate mean normalised count
+  meansBio <- rowMeans(nCountsBio)
+  # For zeroes, same trick as in .EmpiricalBayesMu
+  meansBio <- ifelse(meansBio == 0, min(meansBio[meansBio > 0]), meansBio)
+  mu0 <- meansBio
   
   # If EB prior, replace mu0 by EB estimate
-  if (length(unique(PriorParam$mu.mu)) > 1) {
-    mu0 <- .EmpiricalBayesMu(Data, PriorParam$s2.mu, log_scale = FALSE) 
-    # Transfer difference in global scaling to cell-specific start values
-    # Not for phi, as their scale is fixed
-    myscale <- mean(mu0) / mean(meansBio)
-    nu0 <- nu0 / myscale
-    s0 <- s0 / myscale
-  }
+  #if (length(unique(PriorParam$mu.mu)) > 1) {
+  #  mu0 <- .EmpiricalBayesMu(Data, PriorParam$s2.mu, log_scale = FALSE) 
+  #  # Transfer difference in global scaling to cell-specific start values
+  #  # Not for phi, as their scale is fixed
+  #  myscale <- mean(mu0) / mean(meansBio)
+  #  nu0 <- nu0 / myscale
+  #  s0 <- s0 / myscale
+  #}
 
   # Starting value for delta
   # Defined by the CV for high- and mid-expressed genes

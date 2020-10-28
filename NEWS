@@ -1562,4 +1562,5 @@ WIP
 - Edits `.BASiCS_MCMC_Start` to fix scaling issues when using empirical Bayes
 estimates as starting values
 - Unit tests updated accordingly
+- Fixes all start values to be in the same scale as scran
 
