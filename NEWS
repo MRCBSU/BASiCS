@@ -1557,3 +1557,9 @@ empirical Bayes prior is assigned to mu
 - Fixes small bug in `.BASiCS_MCMC_Start`
 - Updates unit tests linked to the change in `.BASiCS_MCMC_Start`
 - Adds fixed seeds to `test_divide_and_conquer.R`
+
+WIP
+- Edits `.BASiCS_MCMC_Start` to fix scaling issues when using empirical Bayes
+estimates as starting values
+- Unit tests updated accordingly
+

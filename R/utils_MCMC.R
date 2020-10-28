@@ -165,6 +165,11 @@
   # If EB prior, replace mu0 by EB estimate
   if (length(unique(PriorParam$mu.mu)) > 1) {
     mu0 <- .EmpiricalBayesMu(Data, PriorParam$s2.mu, log_scale = FALSE) 
+    # Transfer difference in global scaling to cell-specific start values
+    # Not for phi, as their scale is fixed
+    myscale <- mean(mu0) / mean(meansBio)
+    nu0 <- nu0 / myscale
+    s0 <- s0 / myscale
   }
 
   # Starting value for delta
