@@ -139,7 +139,7 @@
     # Initialize phi as ratio endogenous / spike-in counts
     phi0 <- Matrix::colSums(CountsBio) / Matrix::colSums(CountsTech)
     # Scale phi to have mean = 1
-    phi0 <- n * phi0.1 / sum(phi0.1)
+    phi0 <- n * phi0 / sum(phi0)
     # Set s0 such that s0 * phi0 matches scran normalisation
     s0 <- size_scran / phi0
     nu0 <- s0
