@@ -376,6 +376,7 @@ BASiCS_MCMC <- function(
       sumByGeneBio = sum.bygene.bio,
       phi0 = Start$phi0,
       aphi = PriorParam$p.phi,
+      phi_proposal = Start$phi_proposal,
       LSphi0 = Start$ls.phi0,
       muSpikes = rowData(altExp(Data))[, 2]
     )

@@ -73,6 +73,7 @@ Rcpp::List BASiCS_MCMCcpp(
     arma::vec sumByCellBio, 
     arma::vec sumByGeneAll, 
     arma::vec sumByGeneBio,
+    arma::vec phi_proposal,
     int StoreAdapt, 
     int EndAdapt,
     int PrintProgress,
@@ -195,6 +196,7 @@ Rcpp::List BASiCS_MCMCcpp(
       q0,
       n,
       y_n,
+      phi_proposal,
       cellExponent
     );
     phiAux = Rcpp::as<arma::vec>(phiAuxList["phi"]);

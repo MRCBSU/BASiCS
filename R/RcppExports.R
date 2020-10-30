@@ -5,16 +5,16 @@
     .Call('_BASiCS_BASiCS_DenoisedRates', PACKAGE = 'BASiCS', CountsBio, Mu, TransInvDelta, PhiNu, N, q0, n)
 }
 
-.BASiCS_MCMCcpp <- function(N, Thin, Burn, Counts, BatchDesign, muSpikes, mu0, delta0, phi0, s0, nu0, theta0, mu_mu, s2mu, adelta, bdelta, s2delta, prior_delta, aphi, as, bs, atheta, btheta, ar, LSmu0, LSdelta0, LSphi0, LSnu0, LStheta0, sumByCellBio, sumByGeneAll, sumByGeneBio, StoreAdapt, EndAdapt, PrintProgress, mintol_mu, mintol_delta, mintol_nu, mintol_theta, geneExponent, cellExponent, threads = 1L) {
-    .Call('_BASiCS_BASiCS_MCMCcpp', PACKAGE = 'BASiCS', N, Thin, Burn, Counts, BatchDesign, muSpikes, mu0, delta0, phi0, s0, nu0, theta0, mu_mu, s2mu, adelta, bdelta, s2delta, prior_delta, aphi, as, bs, atheta, btheta, ar, LSmu0, LSdelta0, LSphi0, LSnu0, LStheta0, sumByCellBio, sumByGeneAll, sumByGeneBio, StoreAdapt, EndAdapt, PrintProgress, mintol_mu, mintol_delta, mintol_nu, mintol_theta, geneExponent, cellExponent, threads)
+.BASiCS_MCMCcpp <- function(N, Thin, Burn, Counts, BatchDesign, muSpikes, mu0, delta0, phi0, s0, nu0, theta0, mu_mu, s2mu, adelta, bdelta, s2delta, prior_delta, aphi, as, bs, atheta, btheta, ar, LSmu0, LSdelta0, LSphi0, LSnu0, LStheta0, sumByCellBio, sumByGeneAll, sumByGeneBio, phi_proposal, StoreAdapt, EndAdapt, PrintProgress, mintol_mu, mintol_delta, mintol_nu, mintol_theta, geneExponent, cellExponent, threads = 1L) {
+    .Call('_BASiCS_BASiCS_MCMCcpp', PACKAGE = 'BASiCS', N, Thin, Burn, Counts, BatchDesign, muSpikes, mu0, delta0, phi0, s0, nu0, theta0, mu_mu, s2mu, adelta, bdelta, s2delta, prior_delta, aphi, as, bs, atheta, btheta, ar, LSmu0, LSdelta0, LSphi0, LSnu0, LStheta0, sumByCellBio, sumByGeneAll, sumByGeneBio, phi_proposal, StoreAdapt, EndAdapt, PrintProgress, mintol_mu, mintol_delta, mintol_nu, mintol_theta, geneExponent, cellExponent, threads)
 }
 
 .BASiCS_MCMCcppNoSpikes <- function(N, Thin, Burn, Counts, BatchDesign, mu0, delta0, s0, nu0, theta0, mu_mu, s2mu, adelta, bdelta, s2delta, prior_delta, as, bs, atheta, btheta, Constrain, Index, RefGene, RefGenes, ConstrainGene, NotConstrainGene, StochasticRef, ar, LSmu0, LSdelta0, LSnu0, LStheta0, sumByCellAll, sumByGeneAll, StoreAdapt, EndAdapt, PrintProgress, mintol_mu, mintol_delta, mintol_nu, mintol_theta, geneExponent, cellExponent, threads = 1L) {
     .Call('_BASiCS_BASiCS_MCMCcppNoSpikes', PACKAGE = 'BASiCS', N, Thin, Burn, Counts, BatchDesign, mu0, delta0, s0, nu0, theta0, mu_mu, s2mu, adelta, bdelta, s2delta, prior_delta, as, bs, atheta, btheta, Constrain, Index, RefGene, RefGenes, ConstrainGene, NotConstrainGene, StochasticRef, ar, LSmu0, LSdelta0, LSnu0, LStheta0, sumByCellAll, sumByGeneAll, StoreAdapt, EndAdapt, PrintProgress, mintol_mu, mintol_delta, mintol_nu, mintol_theta, geneExponent, cellExponent, threads)
 }
 
-.BASiCS_MCMCcppReg <- function(N, Thin, Burn, Counts, BatchDesign, muSpikes, mu0, delta0, phi0, s0, nu0, theta0, mu_mu, s2mu, aphi, as, bs, atheta, btheta, k, m0, V0, sigma2_a0, sigma2_b0, beta0, sigma20, eta0, lambda0, variance, ar, LSmu0, LSdelta0, LSphi0, LSnu0, LStheta0, sumByCellBio, sumByGeneAll, sumByGeneBio, StoreAdapt, EndAdapt, PrintProgress, FixLocations, RBFMinMax, RBFLocations, mintol_mu, mintol_delta, mintol_nu, mintol_theta, geneExponent, cellExponent, threads = 1L) {
-    .Call('_BASiCS_BASiCS_MCMCcppReg', PACKAGE = 'BASiCS', N, Thin, Burn, Counts, BatchDesign, muSpikes, mu0, delta0, phi0, s0, nu0, theta0, mu_mu, s2mu, aphi, as, bs, atheta, btheta, k, m0, V0, sigma2_a0, sigma2_b0, beta0, sigma20, eta0, lambda0, variance, ar, LSmu0, LSdelta0, LSphi0, LSnu0, LStheta0, sumByCellBio, sumByGeneAll, sumByGeneBio, StoreAdapt, EndAdapt, PrintProgress, FixLocations, RBFMinMax, RBFLocations, mintol_mu, mintol_delta, mintol_nu, mintol_theta, geneExponent, cellExponent, threads)
+.BASiCS_MCMCcppReg <- function(N, Thin, Burn, Counts, BatchDesign, muSpikes, mu0, delta0, phi0, s0, nu0, theta0, mu_mu, s2mu, aphi, as, bs, atheta, btheta, k, m0, V0, sigma2_a0, sigma2_b0, beta0, sigma20, eta0, lambda0, variance, ar, LSmu0, LSdelta0, LSphi0, LSnu0, LStheta0, sumByCellBio, sumByGeneAll, sumByGeneBio, phi_proposal, StoreAdapt, EndAdapt, PrintProgress, FixLocations, RBFMinMax, RBFLocations, mintol_mu, mintol_delta, mintol_nu, mintol_theta, geneExponent, cellExponent, threads = 1L) {
+    .Call('_BASiCS_BASiCS_MCMCcppReg', PACKAGE = 'BASiCS', N, Thin, Burn, Counts, BatchDesign, muSpikes, mu0, delta0, phi0, s0, nu0, theta0, mu_mu, s2mu, aphi, as, bs, atheta, btheta, k, m0, V0, sigma2_a0, sigma2_b0, beta0, sigma20, eta0, lambda0, variance, ar, LSmu0, LSdelta0, LSphi0, LSnu0, LStheta0, sumByCellBio, sumByGeneAll, sumByGeneBio, phi_proposal, StoreAdapt, EndAdapt, PrintProgress, FixLocations, RBFMinMax, RBFLocations, mintol_mu, mintol_delta, mintol_nu, mintol_theta, geneExponent, cellExponent, threads)
 }
 
 .BASiCS_MCMCcppRegNoSpikes <- function(N, Thin, Burn, Counts, BatchDesign, mu0, delta0, s0, nu0, theta0, mu_mu, s2mu, as, bs, atheta, btheta, k, m0, V0, sigma2_a0, sigma2_b0, beta0, sigma20, eta0, lambda0, variance, Constrain, Index, RefGene, RefGenes, ConstrainGene, NotConstrainGene, StochasticRef, ar, LSmu0, LSdelta0, LSnu0, LStheta0, sumByCellAll, sumByGeneAll, StoreAdapt, EndAdapt, PrintProgress, RBFMinMax, FixLocations, RBFLocations, mintol_mu, mintol_delta, mintol_nu, mintol_theta, geneExponent, cellExponent, threads = 1L) {
@@ -29,8 +29,8 @@
     .Call('_BASiCS_deltaUpdate', PACKAGE = 'BASiCS', delta0, prop_var, Counts, mu, phinu, a_delta, b_delta, s2delta, prior_delta, q0, n, delta1, u, ind, exponent, mintol)
 }
 
-.phiUpdate <- function(phi0, prop_var, Counts, mu, invdelta, nu, aphi, sum_bygene_bio, q0, n, phi1, exponent) {
-    .Call('_BASiCS_phiUpdate', PACKAGE = 'BASiCS', phi0, prop_var, Counts, mu, invdelta, nu, aphi, sum_bygene_bio, q0, n, phi1, exponent)
+.phiUpdate <- function(phi0, prop_var, Counts, mu, invdelta, nu, aphi, sum_bygene_bio, q0, n, phi1, proposal, exponent) {
+    .Call('_BASiCS_phiUpdate', PACKAGE = 'BASiCS', phi0, prop_var, Counts, mu, invdelta, nu, aphi, sum_bygene_bio, q0, n, phi1, proposal, exponent)
 }
 
 .sUpdateBatch <- function(s0, nu, thetaBatch, as, bs, BatchDesign, n, s1, exponent) {

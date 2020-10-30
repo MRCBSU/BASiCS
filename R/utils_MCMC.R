@@ -219,6 +219,7 @@
     s0 = s0,
     nu0 = nu0,
     theta0 = theta0,
+    phi_proposal = phi0,
     ls.mu0 = ls.mu0,
     ls.delta0 = ls.delta0,
     ls.phi0 = ls.phi0,
@@ -410,9 +411,10 @@
   assertthat::assert_that(
     length(Start$mu0) == GPar$q.bio,
     length(Start$delta0) == GPar$q.bio,
-    is.null(Start$phi0) || length(Start$phi) == GPar$n,
+    is.null(Start$phi0) || length(Start$phi0) == GPar$n,
     length(Start$nu0) == GPar$n,
-    length(Start$s0) == GPar$n
+    length(Start$s0) == GPar$n,
+    length(Start$phi_proposal) == GPar$n
     # , length(Start$theta0) == GPar$nBatch
   )
 

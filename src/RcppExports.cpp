@@ -24,8 +24,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // BASiCS_MCMCcpp
-Rcpp::List BASiCS_MCMCcpp(int N, int Thin, int Burn, arma::mat Counts, arma::mat BatchDesign, arma::vec muSpikes, arma::vec mu0, arma::vec delta0, arma::vec phi0, arma::vec s0, arma::vec nu0, arma::vec theta0, arma::vec mu_mu, double s2mu, double adelta, double bdelta, double s2delta, double prior_delta, arma::vec aphi, double as, double bs, double atheta, double btheta, double ar, arma::vec LSmu0, arma::vec LSdelta0, double LSphi0, arma::vec LSnu0, arma::vec LStheta0, arma::vec sumByCellBio, arma::vec sumByGeneAll, arma::vec sumByGeneBio, int StoreAdapt, int EndAdapt, int PrintProgress, double const& mintol_mu, double const& mintol_delta, double const& mintol_nu, double const& mintol_theta, double const& geneExponent, double const& cellExponent, int threads);
-RcppExport SEXP _BASiCS_BASiCS_MCMCcpp(SEXP NSEXP, SEXP ThinSEXP, SEXP BurnSEXP, SEXP CountsSEXP, SEXP BatchDesignSEXP, SEXP muSpikesSEXP, SEXP mu0SEXP, SEXP delta0SEXP, SEXP phi0SEXP, SEXP s0SEXP, SEXP nu0SEXP, SEXP theta0SEXP, SEXP mu_muSEXP, SEXP s2muSEXP, SEXP adeltaSEXP, SEXP bdeltaSEXP, SEXP s2deltaSEXP, SEXP prior_deltaSEXP, SEXP aphiSEXP, SEXP asSEXP, SEXP bsSEXP, SEXP athetaSEXP, SEXP bthetaSEXP, SEXP arSEXP, SEXP LSmu0SEXP, SEXP LSdelta0SEXP, SEXP LSphi0SEXP, SEXP LSnu0SEXP, SEXP LStheta0SEXP, SEXP sumByCellBioSEXP, SEXP sumByGeneAllSEXP, SEXP sumByGeneBioSEXP, SEXP StoreAdaptSEXP, SEXP EndAdaptSEXP, SEXP PrintProgressSEXP, SEXP mintol_muSEXP, SEXP mintol_deltaSEXP, SEXP mintol_nuSEXP, SEXP mintol_thetaSEXP, SEXP geneExponentSEXP, SEXP cellExponentSEXP, SEXP threadsSEXP) {
+Rcpp::List BASiCS_MCMCcpp(int N, int Thin, int Burn, arma::mat Counts, arma::mat BatchDesign, arma::vec muSpikes, arma::vec mu0, arma::vec delta0, arma::vec phi0, arma::vec s0, arma::vec nu0, arma::vec theta0, arma::vec mu_mu, double s2mu, double adelta, double bdelta, double s2delta, double prior_delta, arma::vec aphi, double as, double bs, double atheta, double btheta, double ar, arma::vec LSmu0, arma::vec LSdelta0, double LSphi0, arma::vec LSnu0, arma::vec LStheta0, arma::vec sumByCellBio, arma::vec sumByGeneAll, arma::vec sumByGeneBio, arma::vec phi_proposal, int StoreAdapt, int EndAdapt, int PrintProgress, double const& mintol_mu, double const& mintol_delta, double const& mintol_nu, double const& mintol_theta, double const& geneExponent, double const& cellExponent, int threads);
+RcppExport SEXP _BASiCS_BASiCS_MCMCcpp(SEXP NSEXP, SEXP ThinSEXP, SEXP BurnSEXP, SEXP CountsSEXP, SEXP BatchDesignSEXP, SEXP muSpikesSEXP, SEXP mu0SEXP, SEXP delta0SEXP, SEXP phi0SEXP, SEXP s0SEXP, SEXP nu0SEXP, SEXP theta0SEXP, SEXP mu_muSEXP, SEXP s2muSEXP, SEXP adeltaSEXP, SEXP bdeltaSEXP, SEXP s2deltaSEXP, SEXP prior_deltaSEXP, SEXP aphiSEXP, SEXP asSEXP, SEXP bsSEXP, SEXP athetaSEXP, SEXP bthetaSEXP, SEXP arSEXP, SEXP LSmu0SEXP, SEXP LSdelta0SEXP, SEXP LSphi0SEXP, SEXP LSnu0SEXP, SEXP LStheta0SEXP, SEXP sumByCellBioSEXP, SEXP sumByGeneAllSEXP, SEXP sumByGeneBioSEXP, SEXP phi_proposalSEXP, SEXP StoreAdaptSEXP, SEXP EndAdaptSEXP, SEXP PrintProgressSEXP, SEXP mintol_muSEXP, SEXP mintol_deltaSEXP, SEXP mintol_nuSEXP, SEXP mintol_thetaSEXP, SEXP geneExponentSEXP, SEXP cellExponentSEXP, SEXP threadsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -61,6 +61,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::vec >::type sumByCellBio(sumByCellBioSEXP);
     Rcpp::traits::input_parameter< arma::vec >::type sumByGeneAll(sumByGeneAllSEXP);
     Rcpp::traits::input_parameter< arma::vec >::type sumByGeneBio(sumByGeneBioSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type phi_proposal(phi_proposalSEXP);
     Rcpp::traits::input_parameter< int >::type StoreAdapt(StoreAdaptSEXP);
     Rcpp::traits::input_parameter< int >::type EndAdapt(EndAdaptSEXP);
     Rcpp::traits::input_parameter< int >::type PrintProgress(PrintProgressSEXP);
@@ -71,7 +72,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double const& >::type geneExponent(geneExponentSEXP);
     Rcpp::traits::input_parameter< double const& >::type cellExponent(cellExponentSEXP);
     Rcpp::traits::input_parameter< int >::type threads(threadsSEXP);
-    rcpp_result_gen = Rcpp::wrap(BASiCS_MCMCcpp(N, Thin, Burn, Counts, BatchDesign, muSpikes, mu0, delta0, phi0, s0, nu0, theta0, mu_mu, s2mu, adelta, bdelta, s2delta, prior_delta, aphi, as, bs, atheta, btheta, ar, LSmu0, LSdelta0, LSphi0, LSnu0, LStheta0, sumByCellBio, sumByGeneAll, sumByGeneBio, StoreAdapt, EndAdapt, PrintProgress, mintol_mu, mintol_delta, mintol_nu, mintol_theta, geneExponent, cellExponent, threads));
+    rcpp_result_gen = Rcpp::wrap(BASiCS_MCMCcpp(N, Thin, Burn, Counts, BatchDesign, muSpikes, mu0, delta0, phi0, s0, nu0, theta0, mu_mu, s2mu, adelta, bdelta, s2delta, prior_delta, aphi, as, bs, atheta, btheta, ar, LSmu0, LSdelta0, LSphi0, LSnu0, LStheta0, sumByCellBio, sumByGeneAll, sumByGeneBio, phi_proposal, StoreAdapt, EndAdapt, PrintProgress, mintol_mu, mintol_delta, mintol_nu, mintol_theta, geneExponent, cellExponent, threads));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -130,8 +131,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // BASiCS_MCMCcppReg
-Rcpp::List BASiCS_MCMCcppReg(int N, int Thin, int Burn, arma::mat Counts, arma::mat BatchDesign, arma::vec muSpikes, arma::vec mu0, arma::vec delta0, arma::vec phi0, arma::vec s0, arma::vec nu0, arma::vec theta0, arma::vec mu_mu, double s2mu, arma::vec aphi, double as, double bs, double atheta, double btheta, int k, arma::vec m0, arma::mat V0, double sigma2_a0, double sigma2_b0, arma::vec beta0, double sigma20, double eta0, arma::vec lambda0, double const& variance, double ar, arma::vec LSmu0, arma::vec LSdelta0, double LSphi0, arma::vec LSnu0, arma::vec LStheta0, arma::vec sumByCellBio, arma::vec sumByGeneAll, arma::vec sumByGeneBio, int StoreAdapt, int EndAdapt, int PrintProgress, bool FixLocations, bool RBFMinMax, arma::vec RBFLocations, double const& mintol_mu, double const& mintol_delta, double const& mintol_nu, double const& mintol_theta, double const& geneExponent, double const& cellExponent, int threads);
-RcppExport SEXP _BASiCS_BASiCS_MCMCcppReg(SEXP NSEXP, SEXP ThinSEXP, SEXP BurnSEXP, SEXP CountsSEXP, SEXP BatchDesignSEXP, SEXP muSpikesSEXP, SEXP mu0SEXP, SEXP delta0SEXP, SEXP phi0SEXP, SEXP s0SEXP, SEXP nu0SEXP, SEXP theta0SEXP, SEXP mu_muSEXP, SEXP s2muSEXP, SEXP aphiSEXP, SEXP asSEXP, SEXP bsSEXP, SEXP athetaSEXP, SEXP bthetaSEXP, SEXP kSEXP, SEXP m0SEXP, SEXP V0SEXP, SEXP sigma2_a0SEXP, SEXP sigma2_b0SEXP, SEXP beta0SEXP, SEXP sigma20SEXP, SEXP eta0SEXP, SEXP lambda0SEXP, SEXP varianceSEXP, SEXP arSEXP, SEXP LSmu0SEXP, SEXP LSdelta0SEXP, SEXP LSphi0SEXP, SEXP LSnu0SEXP, SEXP LStheta0SEXP, SEXP sumByCellBioSEXP, SEXP sumByGeneAllSEXP, SEXP sumByGeneBioSEXP, SEXP StoreAdaptSEXP, SEXP EndAdaptSEXP, SEXP PrintProgressSEXP, SEXP FixLocationsSEXP, SEXP RBFMinMaxSEXP, SEXP RBFLocationsSEXP, SEXP mintol_muSEXP, SEXP mintol_deltaSEXP, SEXP mintol_nuSEXP, SEXP mintol_thetaSEXP, SEXP geneExponentSEXP, SEXP cellExponentSEXP, SEXP threadsSEXP) {
+Rcpp::List BASiCS_MCMCcppReg(int N, int Thin, int Burn, arma::mat Counts, arma::mat BatchDesign, arma::vec muSpikes, arma::vec mu0, arma::vec delta0, arma::vec phi0, arma::vec s0, arma::vec nu0, arma::vec theta0, arma::vec mu_mu, double s2mu, arma::vec aphi, double as, double bs, double atheta, double btheta, int k, arma::vec m0, arma::mat V0, double sigma2_a0, double sigma2_b0, arma::vec beta0, double sigma20, double eta0, arma::vec lambda0, double const& variance, double ar, arma::vec LSmu0, arma::vec LSdelta0, double LSphi0, arma::vec LSnu0, arma::vec LStheta0, arma::vec sumByCellBio, arma::vec sumByGeneAll, arma::vec sumByGeneBio, arma::vec phi_proposal, int StoreAdapt, int EndAdapt, int PrintProgress, bool FixLocations, bool RBFMinMax, arma::vec RBFLocations, double const& mintol_mu, double const& mintol_delta, double const& mintol_nu, double const& mintol_theta, double const& geneExponent, double const& cellExponent, int threads);
+RcppExport SEXP _BASiCS_BASiCS_MCMCcppReg(SEXP NSEXP, SEXP ThinSEXP, SEXP BurnSEXP, SEXP CountsSEXP, SEXP BatchDesignSEXP, SEXP muSpikesSEXP, SEXP mu0SEXP, SEXP delta0SEXP, SEXP phi0SEXP, SEXP s0SEXP, SEXP nu0SEXP, SEXP theta0SEXP, SEXP mu_muSEXP, SEXP s2muSEXP, SEXP aphiSEXP, SEXP asSEXP, SEXP bsSEXP, SEXP athetaSEXP, SEXP bthetaSEXP, SEXP kSEXP, SEXP m0SEXP, SEXP V0SEXP, SEXP sigma2_a0SEXP, SEXP sigma2_b0SEXP, SEXP beta0SEXP, SEXP sigma20SEXP, SEXP eta0SEXP, SEXP lambda0SEXP, SEXP varianceSEXP, SEXP arSEXP, SEXP LSmu0SEXP, SEXP LSdelta0SEXP, SEXP LSphi0SEXP, SEXP LSnu0SEXP, SEXP LStheta0SEXP, SEXP sumByCellBioSEXP, SEXP sumByGeneAllSEXP, SEXP sumByGeneBioSEXP, SEXP phi_proposalSEXP, SEXP StoreAdaptSEXP, SEXP EndAdaptSEXP, SEXP PrintProgressSEXP, SEXP FixLocationsSEXP, SEXP RBFMinMaxSEXP, SEXP RBFLocationsSEXP, SEXP mintol_muSEXP, SEXP mintol_deltaSEXP, SEXP mintol_nuSEXP, SEXP mintol_thetaSEXP, SEXP geneExponentSEXP, SEXP cellExponentSEXP, SEXP threadsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -173,6 +174,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::vec >::type sumByCellBio(sumByCellBioSEXP);
     Rcpp::traits::input_parameter< arma::vec >::type sumByGeneAll(sumByGeneAllSEXP);
     Rcpp::traits::input_parameter< arma::vec >::type sumByGeneBio(sumByGeneBioSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type phi_proposal(phi_proposalSEXP);
     Rcpp::traits::input_parameter< int >::type StoreAdapt(StoreAdaptSEXP);
     Rcpp::traits::input_parameter< int >::type EndAdapt(EndAdaptSEXP);
     Rcpp::traits::input_parameter< int >::type PrintProgress(PrintProgressSEXP);
@@ -186,7 +188,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double const& >::type geneExponent(geneExponentSEXP);
     Rcpp::traits::input_parameter< double const& >::type cellExponent(cellExponentSEXP);
     Rcpp::traits::input_parameter< int >::type threads(threadsSEXP);
-    rcpp_result_gen = Rcpp::wrap(BASiCS_MCMCcppReg(N, Thin, Burn, Counts, BatchDesign, muSpikes, mu0, delta0, phi0, s0, nu0, theta0, mu_mu, s2mu, aphi, as, bs, atheta, btheta, k, m0, V0, sigma2_a0, sigma2_b0, beta0, sigma20, eta0, lambda0, variance, ar, LSmu0, LSdelta0, LSphi0, LSnu0, LStheta0, sumByCellBio, sumByGeneAll, sumByGeneBio, StoreAdapt, EndAdapt, PrintProgress, FixLocations, RBFMinMax, RBFLocations, mintol_mu, mintol_delta, mintol_nu, mintol_theta, geneExponent, cellExponent, threads));
+    rcpp_result_gen = Rcpp::wrap(BASiCS_MCMCcppReg(N, Thin, Burn, Counts, BatchDesign, muSpikes, mu0, delta0, phi0, s0, nu0, theta0, mu_mu, s2mu, aphi, as, bs, atheta, btheta, k, m0, V0, sigma2_a0, sigma2_b0, beta0, sigma20, eta0, lambda0, variance, ar, LSmu0, LSdelta0, LSphi0, LSnu0, LStheta0, sumByCellBio, sumByGeneAll, sumByGeneBio, phi_proposal, StoreAdapt, EndAdapt, PrintProgress, FixLocations, RBFMinMax, RBFLocations, mintol_mu, mintol_delta, mintol_nu, mintol_theta, geneExponent, cellExponent, threads));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -305,8 +307,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // phiUpdate
-Rcpp::List phiUpdate(arma::vec const& phi0, double const& prop_var, arma::mat const& Counts, arma::vec const& mu, arma::vec const& invdelta, arma::vec const& nu, arma::vec const& aphi, arma::vec const& sum_bygene_bio, int const& q0, int const& n, arma::vec& phi1, double const& exponent);
-RcppExport SEXP _BASiCS_phiUpdate(SEXP phi0SEXP, SEXP prop_varSEXP, SEXP CountsSEXP, SEXP muSEXP, SEXP invdeltaSEXP, SEXP nuSEXP, SEXP aphiSEXP, SEXP sum_bygene_bioSEXP, SEXP q0SEXP, SEXP nSEXP, SEXP phi1SEXP, SEXP exponentSEXP) {
+Rcpp::List phiUpdate(arma::vec const& phi0, double const& prop_var, arma::mat const& Counts, arma::vec const& mu, arma::vec const& invdelta, arma::vec const& nu, arma::vec const& aphi, arma::vec const& sum_bygene_bio, int const& q0, int const& n, arma::vec& phi1, arma::vec& proposal, double const& exponent);
+RcppExport SEXP _BASiCS_phiUpdate(SEXP phi0SEXP, SEXP prop_varSEXP, SEXP CountsSEXP, SEXP muSEXP, SEXP invdeltaSEXP, SEXP nuSEXP, SEXP aphiSEXP, SEXP sum_bygene_bioSEXP, SEXP q0SEXP, SEXP nSEXP, SEXP phi1SEXP, SEXP proposalSEXP, SEXP exponentSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -321,8 +323,9 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int const& >::type q0(q0SEXP);
     Rcpp::traits::input_parameter< int const& >::type n(nSEXP);
     Rcpp::traits::input_parameter< arma::vec& >::type phi1(phi1SEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type proposal(proposalSEXP);
     Rcpp::traits::input_parameter< double const& >::type exponent(exponentSEXP);
-    rcpp_result_gen = Rcpp::wrap(phiUpdate(phi0, prop_var, Counts, mu, invdelta, nu, aphi, sum_bygene_bio, q0, n, phi1, exponent));
+    rcpp_result_gen = Rcpp::wrap(phiUpdate(phi0, prop_var, Counts, mu, invdelta, nu, aphi, sum_bygene_bio, q0, n, phi1, proposal, exponent));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -667,13 +670,13 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_BASiCS_BASiCS_DenoisedRates", (DL_FUNC) &_BASiCS_BASiCS_DenoisedRates, 7},
-    {"_BASiCS_BASiCS_MCMCcpp", (DL_FUNC) &_BASiCS_BASiCS_MCMCcpp, 42},
+    {"_BASiCS_BASiCS_MCMCcpp", (DL_FUNC) &_BASiCS_BASiCS_MCMCcpp, 43},
     {"_BASiCS_BASiCS_MCMCcppNoSpikes", (DL_FUNC) &_BASiCS_BASiCS_MCMCcppNoSpikes, 44},
-    {"_BASiCS_BASiCS_MCMCcppReg", (DL_FUNC) &_BASiCS_BASiCS_MCMCcppReg, 51},
+    {"_BASiCS_BASiCS_MCMCcppReg", (DL_FUNC) &_BASiCS_BASiCS_MCMCcppReg, 52},
     {"_BASiCS_BASiCS_MCMCcppRegNoSpikes", (DL_FUNC) &_BASiCS_BASiCS_MCMCcppRegNoSpikes, 53},
     {"_BASiCS_muUpdate", (DL_FUNC) &_BASiCS_muUpdate, 15},
     {"_BASiCS_deltaUpdate", (DL_FUNC) &_BASiCS_deltaUpdate, 16},
-    {"_BASiCS_phiUpdate", (DL_FUNC) &_BASiCS_phiUpdate, 12},
+    {"_BASiCS_phiUpdate", (DL_FUNC) &_BASiCS_phiUpdate, 13},
     {"_BASiCS_sUpdateBatch", (DL_FUNC) &_BASiCS_sUpdateBatch, 9},
     {"_BASiCS_nuUpdateBatch", (DL_FUNC) &_BASiCS_nuUpdateBatch, 18},
     {"_BASiCS_thetaUpdateBatch", (DL_FUNC) &_BASiCS_thetaUpdateBatch, 12},

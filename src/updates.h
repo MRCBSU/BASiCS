@@ -150,13 +150,14 @@ Rcpp::List phiUpdate(
     arma::vec const& sum_bygene_bio,
     int const& q0,
     int const& n,
-    arma::vec & phi1,
+    arma::vec& phi1,
+    arma::vec& proposal,
     double const& exponent) {
 
   int ind;
   
   // PROPOSAL STEP
-  phi1 = n * rDirichlet(prop_var * phi0); 
+  phi1 = n * rDirichlet(prop_var * proposal);
   double u = R::runif(0,1);
   
   // ACCEPT/REJECT STEP (REJECT VALUES OUTSIDE VALID RANGE)  
