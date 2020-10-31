@@ -299,29 +299,32 @@
   }
 }
 
-.BASiCS_MCMC_ExtraArgs <- function(Data,
-                                   Burn,
-                                   GPar,
-                                   Regression,
-                                   WithSpikes,
-                                   AR = 0.44,
-                                   StopAdapt = Burn,
-                                   StoreChains = FALSE,
-                                   StoreAdapt = FALSE,
-                                   StoreDir = getwd(),
-                                   RunName = "",
-                                   PrintProgress = TRUE,
-                                   PriorParam = BASiCS_PriorParam(Data, k = 12),
-                                   Start = .BASiCS_MCMC_Start(
-                                     Data = Data,
-                                     PriorParam = PriorParam,
-                                     WithSpikes = WithSpikes,
-                                     Regression = Regression
-                                   ),
-                                   mintol_mu = 1e-3,
-                                   mintol_delta = 1e-3,
-                                   mintol_nu = 1e-5,
-                                   mintol_theta = 1e-4) {
+.BASiCS_MCMC_ExtraArgs <- function(
+    Data,
+    Burn,
+    GPar,
+    Regression,
+    WithSpikes,
+    AR = 0.44,
+    StopAdapt = Burn,
+    StoreChains = FALSE,
+    StoreAdapt = FALSE,
+    StoreDir = getwd(),
+    RunName = "",
+    PrintProgress = TRUE,
+    PriorParam = BASiCS_PriorParam(Data,
+      # p.phi = 20 * Start$phi0,
+      k = 12),
+    Start = .BASiCS_MCMC_Start(
+      Data = Data,
+      PriorParam = PriorParam,
+      WithSpikes = WithSpikes,
+      Regression = Regression
+    ),
+    mintol_mu = 1e-3,
+    mintol_delta = 1e-3,
+    mintol_nu = 1e-5,
+    mintol_theta = 1e-4) {
 
   .stop_k(PriorParam$k)
   lm <- log(Start$mu0)
