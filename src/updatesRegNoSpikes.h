@@ -61,8 +61,8 @@ arma::mat muUpdateRegNoSpikes(
   #pragma omp parallel for
   for (int i = 0; i < q0; i++) {
     if(i != RefGene) {
-      for (int j=0; j < n; j++) {
-        log_aux(i) -= (Counts(i,j) + invdelta(i)) *
+      for (int j = 0; j < n; j++) {
+        log_aux(i) -= (Counts(i, j) + invdelta(i)) *
           log(
             (nu(j) * mu1(i) + invdelta(i)) / 
             (nu(j) * mu0(i) + invdelta(i))
@@ -116,12 +116,11 @@ arma::mat muUpdateRegNoSpikes(
   // Step 2.3: For genes that are *not* under the constrain
   // Only relevant for a trimmed constrain
   #pragma omp parallel for
-  for (int i=0; i < nNotConstrainGene; i++) {
+  for (int i = 0; i < nNotConstrainGene; i++) {
     iAux = NotConstrainGene(i);
-    log_aux(iAux) -= (0.5 / s2_mu) * 
-      (
-          pow(log(mu1(iAux)) - mu_mu(iAux), 2) - 
-          pow(log(mu0(iAux)) - mu_mu(iAux), 2)
+    log_aux(iAux) -= (0.5 / s2_mu) * (
+        pow(log(mu1(iAux)) - mu_mu(iAux), 2) - 
+        pow(log(mu0(iAux)) - mu_mu(iAux), 2)
       ) * exponent;
       
     // ACCEPT REJECT

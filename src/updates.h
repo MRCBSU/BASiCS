@@ -38,11 +38,12 @@ arma::mat muUpdate(
     (pow(log(mu1) - mu_mu, 2) - pow(log(mu0) - mu_mu, 2))
     * exponent;
   #pragma omp parallel for
-  for (int i=0; i < q0; i++) {
-    for (int j=0; j < n; j++) {
-      log_aux(i) -= ( Counts(i,j) + invdelta(i) ) *  
-        log( ( phinu(j)*mu1(i) + invdelta(i) ) / 
-        ( phinu(j)*mu0(i) + invdelta(i) ));
+  for (int i = 0; i < q0; i++) {
+    for (int j = 0; j < n; j++) {
+      log_aux(i) -= (Counts(i,j) + invdelta(i)) *
+        log(
+          (phinu(j) * mu1(i) + invdelta(i)) / 
+          (phinu(j) * mu0(i) + invdelta(i)));
     }
   }
   
@@ -95,10 +96,10 @@ arma::mat deltaUpdate(
   arma::vec log_aux = - n * (lgamma_cpp(1/delta1) - lgamma_cpp(1/delta0));
   log_aux -= n * ( (log(delta1)/delta1) - (log(delta0)/delta0) );
   #pragma omp parallel for
-  for (int i=0; i < q0; i++) {
-    for (int j=0; j < n; j++) {
-      log_aux(i) += std::lgamma(Counts(i,j) + (1/delta1(i)));
-      log_aux(i) -= std::lgamma(Counts(i,j) + (1/delta0(i)));
+  for (int i = 0; i < q0; i++) {
+    for (int j = 0; j < n; j++) {
+      log_aux(i) += std::lgamma(Counts(i, j) + (1 / delta1(i)));
+      log_aux(i) -= std::lgamma(Counts(i, j) + (1 / delta0(i)));
       log_aux(i) -= (Counts(i, j) + (1 / delta1(i))) * 
         log(phinu(j) * mu(i) + (1 / delta1(i)));
       log_aux(i) += (Counts(i, j) + (1 / delta0(i))) * 
@@ -106,7 +107,7 @@ arma::mat deltaUpdate(
     }
   }
   // Component related to the prior
-  if(prior_delta == 1) {
+  if (prior_delta == 1) {
     log_aux += (log(delta1) - log(delta0)) * 
       a_delta - b_delta * 
       (delta1 - delta0);
@@ -172,15 +173,18 @@ Rcpp::List phiUpdate(
     // Loop to replace matrix operations, through genes and cells
     // There is an extra factor in the prior n^(-n); it cancels out in the ratio
     // There is an extra factor n^(-(sum(aphi) - 1));it cancels out in the ratio
+    arma::vec cell_ratio = arma::zeros(n);
+    #pragma omp parallel for
     for (int j = 0; j < n; j++) {
       for (int i = 0; i < q0; i++) {
-        log_aux -= (Counts(i, j) + invdelta(i)) *
+        cell_ratio(j) -= (Counts(i, j) + invdelta(i)) *
           log(
             (phi1(j) * nu(j) * mu(i) + invdelta(i)) / 
             (phi0(j) * nu(j) * mu(i) + invdelta(i))
           );
       }
     }
+    log_aux += arma::sum(cell_ratio);
 
     // There is an extra factor 
     // n^(-(sum(prop_var * phi1))) / n^(-(sum(prop_var * phi0)));
@@ -221,6 +225,7 @@ Rcpp::List phiUpdate(
     )
   ); 
 }
+
 
 /* Draws for cell-specific normalising constants s[j] (batch case)
  * Metropolis-Hastings updates are not required as full conditionals 
@@ -306,8 +311,8 @@ arma::mat nuUpdateBatch(
   // ACCEPT/REJECT STEP
   arma::vec log_aux = arma::zeros(n);
   #pragma omp parallel for
-  for (int j=0; j < n; j++) {
-    for (int i=0; i < q0; i++) {
+  for (int j = 0; j < n; j++) {
+    for (int i = 0; i < q0; i++) {
       log_aux(j) -= (Counts(i, j) + invdelta(i)) *
         log(
           (phi(j) * nu1(j) * mu(i) + invdelta(i)) / 
@@ -318,7 +323,7 @@ arma::mat nuUpdateBatch(
   
   log_aux += (log(nu1) - log(nu0)) % (sum_bygene_all + 1 / thetaBatch)
     * exponent;
-  log_aux -= (nu1 - nu0)  % (SumSpikeInput + (exponent / (thetaBatch % s)));
+  log_aux -= (nu1 - nu0) % (SumSpikeInput + (exponent / (thetaBatch % s)));
   
   /* CREATING OUTPUT VARIABLE & DEBUG 
   * Proposed values are automatically rejected in the following cases:
@@ -327,7 +332,7 @@ arma::mat nuUpdateBatch(
   * - When the acceptance rate cannot be numerally computed
   */ 
   ind = DegubInd(ind, n, u, log_aux, nu1, mintol, "nu");
-  for (int j=0; j < n; j++) {
+  for (int j = 0; j < n; j++) {
     if(ind(j) == 0) {
       nu1(j) = nu0(j);
     }

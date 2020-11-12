@@ -101,7 +101,7 @@ Rcpp::List BASiCS_MCMCcppReg(
     double const& cellExponent,
     int threads = 1) {
 
-
+  Rcpp::Environment env = Rcpp::Environment::global_env();
   #if defined(_OPENMP)
     omp_set_num_threads(threads);
   #endif
@@ -432,7 +432,7 @@ Rcpp::List BASiCS_MCMCcppReg(
         PdeltaAux = -1 + 2*arma::conv_to<arma::mat>::from(PdeltaAux>ar);
         LSdeltaAux = LSdeltaAux + PdeltaAux*0.1;
         PphiAux = PphiAux/50; PphiAux = -1 + 2*(PphiAux>ar); 
-        LSphiAux = LSphiAux - PphiAux*0.1;  
+        LSphiAux = LSphiAux - PphiAux*0.1;
         PnuAux = PnuAux/50; 
         PnuAux = -1 + 2*arma::conv_to<arma::mat>::from(PnuAux>ar);
         LSnuAux = LSnuAux + PnuAux*0.1;
@@ -454,7 +454,6 @@ Rcpp::List BASiCS_MCMCcppReg(
         X = designMatrix(k, RBFLocations, means, variance);
       }
     }
-    
     // STORAGE OF DRAWS
     if((i%Thin==0) & (i>=Burn)) {      
       mu.col(i/Thin - Burn/Thin) = muAux.col(0); 

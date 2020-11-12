@@ -90,7 +90,7 @@ arma::mat muUpdateNoSpikes(
   // Step 2.3: For genes that are *not* under the constrain
   // Only relevant for a trimmed constrain
   #pragma omp parallel for
-  for (int i=0; i < nNotConstrainGene; i++) {
+  for (int i = 0; i < nNotConstrainGene; i++) {
     iAux = NotConstrainGene(i);
     log_aux(iAux) -= (0.5 / s2_mu) * 
       (
@@ -147,7 +147,7 @@ arma::mat nuUpdateBatchNoSpikes(
   #pragma omp parallel for
   for (int j = 0; j < n; j++) {
     for (int i = 0; i < q0; i++) {
-      log_aux(j) -= (Counts(i,j) + invdelta(i)) *
+      log_aux(j) -= (Counts(i, j) + invdelta(i)) *
         log(
           (nu1(j) * mu(i) + invdelta(i)) / 
           (nu0(j) * mu(i) + invdelta(i)));
