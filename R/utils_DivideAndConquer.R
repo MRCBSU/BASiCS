@@ -348,8 +348,12 @@ PossibleParams <- c(
 #' @export
 .reorder_params <- function(Params, GeneOrder = NULL, CellOrder = NULL) {
 
+  stopifnot(is.character(GeneOrder) || is.null(GeneOrder))
+  stopifnot(is.character(CellOrder) || is.null(CellOrder))
+
   if (!is.null(GeneOrder)) {
     row_params <- intersect(names(Params), c("mu", "delta", "epsilon"))
+    # GeneOrder <- intersect(GeneOrder, colnames(Params[row_params][[1]]))
     Params[row_params] <- lapply(
       Params[row_params],
       function(x) {
@@ -360,6 +364,7 @@ PossibleParams <- c(
 
   if (!is.null(CellOrder)) {
     col_params <- intersect(names(Params), c("s", "nu", "phi"))
+    # CellOrder <- intersect(CellOrder, colnames(Params[col_params][[1]]))
     Params[col_params] <- lapply(
       Params[col_params],
       function(x) {

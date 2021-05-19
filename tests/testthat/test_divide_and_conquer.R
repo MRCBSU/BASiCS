@@ -219,3 +219,27 @@ test_that("cut doesn't fail if some quantiles are the same", {
     ), "Cannot find a balanced split"
   )
 })
+
+
+bp <- BiocParallel::SnowParam()
+BiocParallel::register(bp)
+
+test_that("MCMC with ncores > 1 keeps correct order", {
+  m <- run_MCMC(
+    Data,
+    NSubsets = 4,
+    SubsetBy = "gene",
+    Regression = TRUE,
+    PrintProgress = FALSE,
+    WithSpikes = TRUE,
+    BPPARAM = bp,
+    N = 8,
+    Thin = 2,
+    Burn = 4
+  )
+  expect_equal(colnames(m), colnames(Data))
+  expect_equal(rownames(m), rownames(Data))
+})
+
+bp <- BiocParallel::SnowParam()
+BiocParallel::register(bp)

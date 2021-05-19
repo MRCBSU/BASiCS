@@ -255,10 +255,15 @@ BASiCS_MCMC <- function(
       BPPARAM = BPPARAM,
       ...
     )
+
+    CellOrder <- colnames(Data)
+    if (!is.null(Data$BatchInfo)) {
+      CellOrder <- paste0(CellOrder, "_Batch", Data$BatchInfo)
+    }
     Chain <- .combine_subposteriors(
       Chains,
-      GeneOrder = colnames(Data),
-      CellOrder = rownames(Data),
+      GeneOrder = rownames(Data),
+      CellOrder = CellOrder,
       CombineMethod = CombineMethod,
       SubsetBy = SubsetBy,
       Weighting = Weighting,
