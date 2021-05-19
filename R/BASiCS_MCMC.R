@@ -257,6 +257,8 @@ BASiCS_MCMC <- function(
     )
     Chain <- .combine_subposteriors(
       Chains,
+      GeneOrder = colnames(Data),
+      CellOrder = rownames(Data),
       CombineMethod = CombineMethod,
       SubsetBy = SubsetBy,
       Weighting = Weighting,
