@@ -135,6 +135,20 @@
   .combine_subposteriors(..., CombineMethod = "consensus")
 }
 
+
+PossibleParams <- c(
+  "mu",
+  "delta",
+  "epsilon",
+  "s",
+  "nu",
+  "phi",
+  "lambda",
+  "theta",
+  "sigma2"
+)
+
+
 .combine_subposteriors <- function(
     Chains,
     GeneOrder = NULL,
@@ -167,7 +181,7 @@
   )
 
   Params <- names(Chains[[1]]@parameters)
-  Params <- setdiff(Params, "RefFreq")
+  Params <- intersect(Params, PossibleParams)
 
   mean_params <- bplapply(
     Params,
@@ -320,7 +334,6 @@
     ncol = length(all_colnames),
     dimnames = list(NULL, all_colnames)
   )
-  browser()
   output[, ] <- vapply(
     all_colnames,
     Fun,
