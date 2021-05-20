@@ -259,6 +259,8 @@ BASiCS_MCMC <- function(
     CellOrder <- colnames(Data)
     if (!is.null(Data$BatchInfo)) {
       CellOrder <- paste0(CellOrder, "_Batch", Data$BatchInfo)
+    } else {
+      CellOrder <- paste0(CellOrder, "_Batch1")
     }
     Chain <- .combine_subposteriors(
       Chains,

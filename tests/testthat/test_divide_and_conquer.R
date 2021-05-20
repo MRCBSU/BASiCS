@@ -239,6 +239,22 @@ test_that("MCMC with ncores > 1 keeps correct order", {
   )
   expect_equal(colnames(m), paste0(colnames(Data), "_Batch", Data$BatchInfo))
   expect_equal(rownames(m), rownames(Data))
+  Data$BatchInfo <- NULL
+  m <- run_MCMC(
+    Data,
+    NSubsets = 4,
+    SubsetBy = "gene",
+    Regression = TRUE,
+    PrintProgress = FALSE,
+    WithSpikes = TRUE,
+    BPPARAM = bp,
+    N = 8,
+    Thin = 2,
+    Burn = 4
+  )
+  expect_equal(colnames(m), paste0(colnames(Data), "_Batch", Data$BatchInfo))
+  expect_equal(rownames(m), rownames(Data))
+
 })
 
 bp <- BiocParallel::SnowParam()
