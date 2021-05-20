@@ -237,7 +237,7 @@ test_that("MCMC with ncores > 1 keeps correct order", {
     Thin = 2,
     Burn = 4
   )
-  expect_equal(colnames(m), colnames(Data))
+  expect_equal(colnames(m), paste0(colnames(Data), "_Batch", Data$BatchInfo))
   expect_equal(rownames(m), rownames(Data))
 })
 

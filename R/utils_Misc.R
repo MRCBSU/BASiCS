@@ -6,7 +6,7 @@
 ess <- function(x) {
   vars <- matrixStats::colVars(x)
   spec <- numeric(ncol(x))
-  has_var <- vars != 0
+  has_var <- vars > .Machine$double.eps
   if (any(has_var, na.rm = TRUE)) {
     spec[which(has_var)] <- apply(x[, which(has_var), drop = FALSE],
       2,
